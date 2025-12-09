@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml>
+  <net id="mutex" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <name>
+      <text>Mutual Exclusion</text>
+    </name>
+    
+    <!-- Places -->
+    <place id="idle1">
+      <name>
+        <text>Process 1 Idle</text>
+      </name>
+      <initialMarking>
+        <text>1</text>
+      </initialMarking>
+    </place>
+    
+    <place id="idle2">
+      <name>
+        <text>Process 2 Idle</text>
+      </name>
+      <initialMarking>
+        <text>1</text>
+      </initialMarking>
+    </place>
+    
+    <place id="critical1">
+      <name>
+        <text>Process 1 Critical</text>
+      </name>
+      <initialMarking>
+        <text>0</text>
+      </initialMarking>
+    </place>
+    
+    <place id="critical2">
+      <name>
+        <text>Process 2 Critical</text>
+      </name>
+      <initialMarking>
+        <text>0</text>
+      </initialMarking>
+    </place>
+    
+    <place id="semaphore">
+      <name>
+        <text>Semaphore</text>
+      </name>
+      <initialMarking>
+        <text>1</text>
+      </initialMarking>
+    </place>
+    
+    <!-- Transitions -->
+    <transition id="enter1">
+      <name>
+        <text>Process 1 Enters</text>
+      </name>
+    </transition>
+    
+    <transition id="exit1">
+      <name>
+        <text>Process 1 Exits</text>
+      </name>
+    </transition>
+    
+    <transition id="enter2">
+      <name>
+        <text>Process 2 Enters</text>
+      </name>
+    </transition>
+    
+    <transition id="exit2">
+      <name>
+        <text>Process 2 Exits</text>
+      </name>
+    </transition>
+    
+    <!-- Arcs -->
+    <!-- Process 1 -->
+    <arc id="a1" source="idle1" target="enter1"/>
+    <arc id="a2" source="semaphore" target="enter1"/>
+    <arc id="a3" source="enter1" target="critical1"/>
+    <arc id="a4" source="critical1" target="exit1"/>
+    <arc id="a5" source="exit1" target="idle1"/>
+    <arc id="a6" source="exit1" target="semaphore"/>
+    
+    <!-- Process 2 -->
+    <arc id="a7" source="idle2" target="enter2"/>
+    <arc id="a8" source="semaphore" target="enter2"/>
+    <arc id="a9" source="enter2" target="critical2"/>
+    <arc id="a10" source="critical2" target="exit2"/>
+    <arc id="a11" source="exit2" target="idle2"/>
+    <arc id="a12" source="exit2" target="semaphore"/>
+  </net>
+</pnml>
+

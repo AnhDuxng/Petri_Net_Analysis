@@ -1,0 +1,4 @@
+pyeda>=0.28.0
+networkx>=3.1
+lxml>=4.9.0
+

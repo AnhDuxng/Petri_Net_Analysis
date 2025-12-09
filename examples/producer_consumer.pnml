@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml>
+  <net id="producer_consumer" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <name>
+      <text>Producer-Consumer</text>
+    </name>
+    
+    <!-- Places -->
+    <place id="p_ready">
+      <name>
+        <text>Producer Ready</text>
+      </name>
+      <initialMarking>
+        <text>1</text>
+      </initialMarking>
+    </place>
+    
+    <place id="p_producing">
+      <name>
+        <text>Producing</text>
+      </name>
+      <initialMarking>
+        <text>0</text>
+      </initialMarking>
+    </place>
+    
+    <place id="buffer">
+      <name>
+        <text>Buffer</text>
+      </name>
+      <initialMarking>
+        <text>0</text>
+      </initialMarking>
+    </place>
+    
+    <place id="c_ready">
+      <name>
+        <text>Consumer Ready</text>
+      </name>
+      <initialMarking>
+        <text>1</text>
+      </initialMarking>
+    </place>
+    
+    <place id="c_consuming">
+      <name>
+        <text>Consuming</text>
+      </name>
+      <initialMarking>
+        <text>0</text>
+      </initialMarking>
+    </place>
+    
+    <!-- Transitions -->
+    <transition id="produce">
+      <name>
+        <text>Produce</text>
+      </name>
+    </transition>
+    
+    <transition id="finish_produce">
+      <name>
+        <text>Finish Producing</text>
+      </name>
+    </transition>
+    
+    <transition id="consume">
+      <name>
+        <text>Consume</text>
+      </name>
+    </transition>
+    
+    <transition id="finish_consume">
+      <name>
+        <text>Finish Consuming</text>
+      </name>
+    </transition>
+    
+    <!-- Arcs -->
+    <!-- Producer -->
+    <arc id="a1" source="p_ready" target="produce"/>
+    <arc id="a2" source="produce" target="p_producing"/>
+    <arc id="a3" source="p_producing" target="finish_produce"/>
+    <arc id="a4" source="finish_produce" target="buffer"/>
+    <arc id="a5" source="finish_produce" target="p_ready"/>
+    
+    <!-- Consumer -->
+    <arc id="a6" source="c_ready" target="consume"/>
+    <arc id="a7" source="buffer" target="consume"/>
+    <arc id="a8" source="consume" target="c_consuming"/>
+    <arc id="a9" source="c_consuming" target="finish_consume"/>
+    <arc id="a10" source="finish_consume" target="c_ready"/>
+  </net>
+</pnml>
+
