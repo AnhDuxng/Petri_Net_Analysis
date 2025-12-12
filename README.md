@@ -82,11 +82,4 @@ Transitions: 4
 - Time: 0.008s
 ```
 
-## Authors
-
-[Student IDs and Names]
-
-## License
-
-For academic use only. Part of CO2011 Mathematical Modeling course.
 

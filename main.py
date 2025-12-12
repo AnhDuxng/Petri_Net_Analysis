@@ -102,7 +102,7 @@ def run_all_tasks(pnml_file: str, weights: list = None):
         return
     
     # Task 4: Deadlock detection
-    print_header("Task 4: Deadlock Detection (ILP + BDD)")
+    print_header("Task 4: Deadlock Detection (BDD-based)")
     try:
         detector = DeadlockDetector(petri_net, symbolic_analyzer)
         deadlock = detector.detect_deadlock_ilp_direct()
